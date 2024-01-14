@@ -7,9 +7,13 @@ Create a `.env` file in root folder which includes -
 > AUTH_SECRET= Random secret which will be used by jwt and in authentication
 
 > GITHUB_CLIENT_ID=
+
 > GITHUB_CLIENT_SECRET=
 
 > GOOGLE_CLIENT_ID=
+
 > GOOGLE_CLIENT_SECRET=
+
+> RESEND_API_KEY= Signup to [Resend](https://resend.com/home) for email services
 
 Then do `npm run dev` in terminal
