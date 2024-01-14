@@ -3,11 +3,8 @@
 import * as z from "zod";
 import { ResetSchema } from "@/schemas";
 import { getUserByEmail } from "@/data/user";
-import { signIn } from "@/auth";
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
-import { AuthError } from "next-auth";
-import { generateVerificationToken } from "@/lib/tokens";
-import { sendVerificationEmail } from "@/lib/mail";
+import { generatePasswordResetToken } from "@/lib/tokens";
+import { sendResetPasswordEmail } from "@/lib/mail";
 
 export const resetAction = async (values: z.infer<typeof ResetSchema>) => {
   const validatedFields = ResetSchema.safeParse(values);
@@ -23,7 +20,12 @@ export const resetAction = async (values: z.infer<typeof ResetSchema>) => {
     return { error: "Email not found!" };
   }
 
-  // TODO: generate token and send email
+  const passwordResetToken = await generatePasswordResetToken(email);
+
+  await sendResetPasswordEmail(
+    passwordResetToken.email,
+    passwordResetToken.token
+  );
 
   return { success: "Reset email sent!" };
 };
