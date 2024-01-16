@@ -16,4 +16,6 @@ Create a `.env` file in root folder which includes -
 
 > RESEND_API_KEY= Signup to [Resend](https://resend.com/home) for email services
 
+> NEXT_PUBLIC_APP_URL="http://localhost:3000"
+
 Then do `npm run dev` in terminal
